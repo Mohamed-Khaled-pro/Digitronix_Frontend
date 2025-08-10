@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-
 import Home from "./pages/Home";
 import UsersPage from "./pages/UsersPage";
 import Nav from "./components/Nav";

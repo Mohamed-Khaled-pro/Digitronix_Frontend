@@ -14,7 +14,6 @@ export function CartProvider({ children }) {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  // Fetch latest stock count
   const refreshStock = async () => {
     try {
       const updatedCart = await Promise.all(
