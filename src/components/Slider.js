@@ -19,7 +19,7 @@ export default function AdSlider() {
   const handleNext = () => setIndex((prev) => (prev + 1) % images.length);
 
   return (
-    <div className="relative w-full h-72 md:h-80 overflow-hidden rounded-xl shadow-lg " style={{height:"550px"}} >
+    <div className="relative w-full h-72 md:h-80 lg:h-96 overflow-hidden rounded-xl shadow-lg " style={{height:"550px"}} >
       <AnimatePresence mode="wait">
         <motion.img
          loading="lazy"
