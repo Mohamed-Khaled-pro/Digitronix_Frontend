@@ -109,7 +109,7 @@ function ProductsPage() {
             transition={{ duration: 1 }}
             className="relative mb-5 border-2 border-primaryGreen rounded shadow hover:shadow-lg transition flex flex-col "
           >
-            <div className=" h-60  md:h-80 cursor-pointer">
+            <div className=" h-60 md:h-80 cursor-pointer">
               <img
                 src={product.image}
                 alt={product.name}
