@@ -39,7 +39,7 @@ export default function Register() {
     <div className="mt-20 dark:bg-black flex items-center justify-center px-4 mb-20">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-xl bg-white dark:bg-black p-8 shadow-white rounded-xl shadow-lg"
+        className="w-full max-w-xl bg-white dark:bg-black p-8 shadow-white rounded-xl shadow-sm"
       >
         <h2 className="text-2xl font-bold text-center text-gray-800 dark:text-white mb-8">
           Register New User
