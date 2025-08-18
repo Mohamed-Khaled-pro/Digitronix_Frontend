@@ -114,7 +114,7 @@ function ProductsPage() {
                 src={product.image}
                 alt={product.name}
                 onClick={() => handleItemClick(product._id)}
-                className="w-full h-56 md:h-72 mb-3  bg-white cursor-pointer "
+                className="w-full h-56 md:h-96 mb-3 bg-white cursor-pointer "
               />
             </div>
 
