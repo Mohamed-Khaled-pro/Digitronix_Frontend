@@ -16,14 +16,13 @@ export default function Admin() {
    
 
    useEffect(() => {
-  if (!user) return; // لسه مفيش بيانات
+  if (!user) return; 
 
   if (user.isAdmin === false) {
     navigate('/error');
     return;
   }
 
-  // لو ادمن فعلاً نبدأ نحمل البيانات
   
 }, [user]);
 

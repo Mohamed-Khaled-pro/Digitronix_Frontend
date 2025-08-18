@@ -28,7 +28,7 @@ export default function AdminOrderDetails() {
       )
       .then((res) => {
         toast.success("Order status updated");
-        setOrder(res.data.order);
+        setOrder((prev) => ({ ...prev, state: newState }));
       })
       .catch(() => toast.error("Failed to update status"));
   };
@@ -62,10 +62,10 @@ export default function AdminOrderDetails() {
         <p>
           <strong>Status:</strong>{" "}
           <select
-  value={order.state}
-  onChange={handleStateChange}
-  className="border dark:border-gray-700 bg-white dark:bg-gray-900 text-black dark:text-white rounded px-2 py-1"
->
+            value={order.state}
+            onChange={handleStateChange}
+            className="border dark:border-gray-700 bg-white dark:bg-gray-900 text-black dark:text-white rounded px-2 py-1"
+          >
             <option value="pending">Pending</option>
             <option value="processing">Processing</option>
             <option value="shipped">Shipped</option>
