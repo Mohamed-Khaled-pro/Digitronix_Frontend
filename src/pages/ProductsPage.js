@@ -102,102 +102,112 @@ function ProductsPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 p-3 md:p-1">
         {currentProducts.map((product) => (
           <motion.div
-            key={product._id}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="relative mb-5 border-2 border-primaryGreen rounded shadow hover:shadow-lg transition flex flex-col "
-          >
-            <div className=" h-60 md:h-80 cursor-pointer">
-              <img
-                src={product.image}
-                alt={product.name}
-                onClick={() => handleItemClick(product._id)}
-                className="w-full h-60 md:h-80 mb-3 bg-white cursor-pointer "
-              />
-            </div>
-
-            <div className="p-2 md:p-4 flex-1 ">
-              <h2 className="text-lg md:text-xl font-bold mt-5 mb-2 cursor-pointer font-sans font-bold"                 onClick={() => handleItemClick(product._id)}
+  key={product._id}
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8 }}
+  className="relative flex flex-col bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden"
 >
-                {product.name}
-              </h2>
-              <p className="text-gray-400 mb-2 text-sm line-clamp-2 cursor-pointer"                 onClick={() => handleItemClick(product._id)}
->
-                {product.description}
-              </p>
+  {/* Image */}
+  <div className="relative w-full h-64 md:h-72 overflow-hidden group cursor-pointer">
+    <img
+      src={product.image}
+      alt={product.name}
+      onClick={() => handleItemClick(product._id)}
+      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+    />
 
-              <div className="flex items-center justify-center mb-2">
-                {Array.from({ length: 5 }, (_, i) =>
-                  i < Math.floor(product.rating) ? (
-                    <FaStar key={i} className="text-yellow-400 text-md" />
-                  ) : (
-                    <FaRegStar key={i} className="text-gray-300" />
-                  )
-                )}
-                <span className="text-sm text-gray-500 ml-2">
-                  ({product.rating.toFixed(1)})
-                </span>
-              </div>
+    {/* Featured / Tag */}
+    {product.isFeatured && (
+      <div className="absolute top-3 left-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white px-3 py-1 rounded-full text-xs md:text-sm flex items-center gap-1 shadow-lg">
+        <FaFire />
+        Best Seller
+      </div>
+    )}
+    {product.category?.name === "Deals & Offers" && (
+      <div className="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-xs md:text-sm flex items-center gap-1 shadow-lg">
+        <FaTags />
+        HOT DEAL
+      </div>
+    )}
+  </div>
 
-              {product.category?.name === "Deals & Offers" ? (
-                <>
-                  <div className="absolute top-0 left-0 m-2 flex items-center gap-1 bg-gradient-to-r from-red-600 to-yellow-400 text-white px-2 py-1 rounded-tr-xl rounded-bl-xl shadow-lg z-10">
-                    <FaTags className="text-xs md:text-lg" />
-                    <span className="text-xs md:text-sm font-bold">
-                      HOT DEAL
-                    </span>
-                  </div>
+  {/* Content */}
+  <div className="p-4 flex-1 flex flex-col justify-between">
+    <div>
+      <h2
+        className="text-lg md:text-xl font-semibold mb-1 cursor-pointer hover:text-primaryGreen transition-colors"
+        onClick={() => handleItemClick(product._id)}
+      >
+        {product.name}
+      </h2>
+      <p
+        className="text-gray-500 dark:text-gray-400 text-sm line-clamp-2 mb-3 cursor-pointer"
+        onClick={() => handleItemClick(product._id)}
+      >
+        {product.description}
+      </p>
 
-                  <div className="mb-4 mt-4 md:mt-10 mb-5">
-                    <p className="text-sm text-gray-500 line-through">
-                      {Math.round(product.price + product.price * 0.2)} EGP
-                    </p>
-                    <p className="text-lg text-red-600 font-bold">
-                      {product.price} EGP
-                    </p>
-                    <p className="text-green-600 text-sm font-semibold">
-                      20% OFF
-                    </p>
-                  </div>
-                </>
-              ) : (
-                <p className="font-bold text-lg md:text-xl mt-8 mb-5">
-                  {product.price} EGP
-                </p>
-              )}
-            </div>
+      {/* Rating */}
+      <div className="flex items-center mb-3">
+        {Array.from({ length: 5 }, (_, i) =>
+          i < Math.floor(product.rating) ? (
+            <FaStar key={i} className="text-yellow-400 mr-1" />
+          ) : (
+            <FaRegStar key={i} className="text-gray-300 mr-1" />
+          )
+        )}
+        <span className="text-gray-500 text-sm ml-2">
+          ({product.rating.toFixed(1)})
+        </span>
+      </div>
 
-            {product.isFeatured && (
-              <div
-                dir="rtl"
-                className="absolute  top-0  right-0 bg-gradient-to-r from-purple-700 via-pink-600 to-red-600 text-xs md:text-sm font-bold text-white px-3 py-1 rounded-bl-xl flex items-center gap-1 shadow-lg animate-pulse z-10"
-              >
-                <FaFire className="text-base md:text-lg" />
-                Best Seller
-              </div>
-            )}
+      {/* Price */}
+      <div className="flex flex-col">
+        {product.category?.name === "Deals & Offers" ? (
+          <>
+            <span className="text-gray-400 line-through text-sm">
+              {Math.round(product.price + product.price * 0.2)} EGP
+            </span>
+            <span className="text-red-600 font-bold text-lg">
+              {product.price} EGP
+            </span>
+            <span className="text-green-600 text-sm font-semibold">
+              20% OFF
+            </span>
+          </>
+        ) : (
+          <span className="text-gray-900 dark:text-white font-bold text-lg">
+            {product.price} EGP
+          </span>
+        )}
+      </div>
+    </div>
 
-            <div
-              dir="rtl"
-              className="absolute bottom-0 md:top-4 right-0 text-xl md:text-2xl p-2 md:p-4 "
-              onClick={() => handleFavorite(product._id)}
-            >
-              {safeFavourites.includes(product._id) ? (
-                <FaHeart className="text-red-600 cursor-pointer" />
-              ) : (
-                <FaRegHeart className="text-gray-300 cursor-pointer" />
-              )}
-            </div>
-            {user?.isAdmin && (
-<button
-  className="bg-red-500 text-white px-3 py-1 rounded "
-  onClick={() => handleRemove(product._id)}
->
-  Remove
-</button>            )}
-          </motion.div>
+    {/* Actions */}
+    <div className="mt-4 flex justify-between items-center">
+      <div
+        className="text-xl cursor-pointer"
+        onClick={() => handleFavorite(product._id)}
+      >
+        {safeFavourites.includes(product._id) ? (
+          <FaHeart className="text-red-500" />
+        ) : (
+          <FaRegHeart className="text-gray-300 dark:text-gray-400" />
+        )}
+      </div>
+      {user?.isAdmin && (
+        <button
+          className="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-lg text-sm font-semibold transition-colors"
+          onClick={() => handleRemove(product._id)}
+        >
+          Remove
+        </button>
+      )}
+    </div>
+  </div>
+</motion.div>
         ))}
       </div>
 
