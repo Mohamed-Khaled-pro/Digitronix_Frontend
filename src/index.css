@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
 /* Light Mode */
 body {
@@ -10,6 +11,8 @@ body {
 /* Dark Mode */
 .dark body {
   @apply bg-black text-white;
+    font-family: 'Inter', sans-serif;
+
 }
 
 .Toastify__progress-bar--success {
