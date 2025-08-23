@@ -20,10 +20,14 @@ import Featured from "./pages/Featured";
 import AdminOrderDetails from "./components/AdminOrderDetails";
 import { useUser } from "./context/UserContext";
 function App() {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(()=>{
+    const mode = localStorage.getItem("darkMode")
+   return  mode ? JSON.parse(mode) : false;
+  });
   const { user } = useUser();
   // Add/remove dark class on document root
   useEffect(() => {
+    localStorage.setItem('darkMode',JSON.stringify(darkMode))
     if (darkMode) {
       document.documentElement.classList.add("dark");
     } else {

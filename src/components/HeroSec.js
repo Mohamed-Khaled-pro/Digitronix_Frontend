@@ -13,7 +13,7 @@ import SearchBar from "./SearchBar";
 
 export default function HeroSec() {
   return (
-    <div className="mt-5 md:mt-20 w-full  dark:bg-black px-4 md:px-20 py-16 text-black dark:text-white mb-20 md:mb-20">
+    <div className="mt-5 md:mt-20 w-full  dark:bg-black px-4 md:px-20 py-16 text-black dark:text-white border-b-2">
       {/* العنوان + الوصف */}
       <div className="max-w-7xl mx-auto flex flex-col gap-14 text-center">
         <motion.h1

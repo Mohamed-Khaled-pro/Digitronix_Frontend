@@ -5,13 +5,19 @@ import Footer from '../components/Footer'
 import Secure from '../components/Secure'
 import AdSlider from '../components/Slider'
 import AuthButtons from '../components/LoginButtons'
+import FixedPhoto from '../components/FixedPhoto'
 export default function Home({favourites , setFavourites}) {
   return (
     <div>
     <HeroSec />
-    <AdSlider />
+    <FixedPhoto />
     <ProductsPage favourites={favourites} setFavourites={setFavourites} />
+        <div className='my-56'>
     <Secure />
+    </div>
+    <div className='my-56'>
+    <AdSlider />
+    </div>
     <AuthButtons />
     <Footer />
     </div>
