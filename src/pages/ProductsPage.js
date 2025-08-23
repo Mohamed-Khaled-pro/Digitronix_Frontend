@@ -115,7 +115,7 @@ function ProductsPage() {
       src={product.image}
       alt={product.name}
       onClick={() => handleItemClick(product._id)}
-      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+      className="w-full h-full  transform group-hover:scale-105 transition-transform duration-300"
     />
 
     {/* Featured / Tag */}
