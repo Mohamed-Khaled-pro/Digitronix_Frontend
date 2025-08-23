@@ -14,7 +14,7 @@ export default function FixedPhoto() {
         transition={{ duration: 1.2, ease: "easeOut" }}
       ></motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 px-6 cursor-pointer">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-6 mt-10 px-6 ">
         {[
           { src: "/assets/headphone.avif", alt: "Headphones" },
           { src: "/assets/laptop3.jpg", alt: "Laptop" },
@@ -22,7 +22,7 @@ export default function FixedPhoto() {
         ].map((item, index) => (
           <motion.div
             key={index}
-            className="w-full h-44 md:h-72"
+            className="w-full h-60 md:h-80"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.2, duration: 0.8 }}
@@ -31,9 +31,6 @@ export default function FixedPhoto() {
               rotate: 1,
               boxShadow: "0px 8px 25px rgba(0,0,0,0.3)",
             }}
-            onClick={() =>
-              navigate("/api/products?category=6887d9a8aea846c50447c1d8")
-            }
           >
             <img
               src={item.src}
