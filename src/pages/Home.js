@@ -6,12 +6,12 @@ import Secure from '../components/Secure'
 import AdSlider from '../components/Slider'
 import AuthButtons from '../components/LoginButtons'
 import FixedPhoto from '../components/FixedPhoto'
-export default function Home({favourites , setFavourites}) {
+export default function Home({ darkMode}) {
   return (
     <div>
     <HeroSec />
-    <FixedPhoto />
-    <ProductsPage favourites={favourites} setFavourites={setFavourites} />
+    <FixedPhoto darkMode = {darkMode} />
+    <ProductsPage/>
         <div className='my-56'>
     <Secure />
     </div>

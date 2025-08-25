@@ -1,15 +1,16 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router";
 
-export default function FixedPhoto() {
-  const navigate = useNavigate();
+export default function FixedPhoto({darkMode}) {
   return (
     <div className="Main-Container w-full overflow-hidden mb-52">
       <motion.div
         className="w-full h-[300px] md:h-[500px]  md:bg-fixed bg-cover bg-center  bg-no-repeat flex items-center justify-center"
-        style={{ backgroundImage: "url('/assets/background1.jpg')" }}
-        initial={{ opacity: 0, scale: 1.05 }}
+style={{
+  backgroundImage: darkMode
+    ? "url('/assets/bgDark.jpg')" 
+    : "url('/assets/background1.jpg')"
+}}        initial={{ opacity: 0, scale: 1.05 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       ></motion.div>
