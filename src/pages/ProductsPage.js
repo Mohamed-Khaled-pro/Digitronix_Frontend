@@ -16,6 +16,7 @@ import { ProductContext } from "../context/ProductContext";
 import { FavouriteContext } from "../context/FavouriteContext";
 import { useUser } from "../context/UserContext";
 import { useCart } from "../context/CartContext";
+import { toast } from "react-toastify";
 import axiosClient from "../api/axiosClient";
 
 const INITIAL_VISIBLE = 8;
@@ -42,7 +43,7 @@ function ProductsPage() {
     setVisibleCount(INITIAL_VISIBLE);
   }, [selectedCategory]);
 
-  
+
  const handleAddToCart = (product) => {
   if (!user) {
     return toast.error("You must be logged in to add products to your cart");
