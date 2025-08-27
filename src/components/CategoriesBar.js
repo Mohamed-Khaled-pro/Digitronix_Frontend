@@ -22,6 +22,7 @@ export default function CategoriesBar({ onCategorySelect, selectedCategory }) {
         <CategoryItem
           name="All"
           image="/assets/ALL.png"
+          selected={selectedCategory === null}
           onClick={() => onCategorySelect(null)}
         />
 

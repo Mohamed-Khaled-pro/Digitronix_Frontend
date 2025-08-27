@@ -11,8 +11,13 @@ function CategoryItem({ name, image, onClick, selected }) {
           className="w-full h-full rounded-full "
         />
       </div>
-      <p className="text-sm mt-2 text-center font-medium capitalize">{name}</p>
-    </div>
+ <p
+        className={`text-sm mt-2 text-center font-medium capitalize ${
+          selected ? "text-primaryGreen font-semibold" : ""
+        }`}
+      >
+        {name}
+      </p>    </div>
   );
 }
 
