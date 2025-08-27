@@ -15,6 +15,7 @@ import CategoriesBar from "../components/CategoriesBar";
 import { ProductContext } from "../context/ProductContext";
 import { FavouriteContext } from "../context/FavouriteContext";
 import { useUser } from "../context/UserContext";
+import { useCart } from "../context/CartContext";
 import axiosClient from "../api/axiosClient";
 
 const INITIAL_VISIBLE = 8;
@@ -23,6 +24,7 @@ function ProductsPage() {
   const { products, loadingProducts , fetchProducts } = useContext(ProductContext);
   const { favourites, setFavourites } = useContext(FavouriteContext);
   const {user} = useUser();
+  const {cart , setCart} = useCart();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
@@ -39,6 +41,31 @@ function ProductsPage() {
   useEffect(() => {
     setVisibleCount(INITIAL_VISIBLE);
   }, [selectedCategory]);
+
+  const handleAddToCart = () => {
+      if (!user) {
+        return toast.error("You must be logged in to add products to your cart");
+      }
+      const exist = cart.find((item) => item.id === product._id);
+      if (exist) {
+        toast("Product already in cart");
+         navigate('/api/products')
+      } else {
+        setCart([
+          ...cart,
+          {
+            id: product._id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity: 1,
+            countInStock: product.countInStock,
+          },
+        ]);
+        toast.success("Product added to cart");
+      }
+    };
+  
 
   const currentProducts = filteredProducts.slice(0, visibleCount);
 
@@ -187,6 +214,12 @@ function ProductsPage() {
 
     {/* Actions */}
     <div className="mt-4 flex justify-between items-center">
+      <button
+          onClick={handleAddToCart}
+          className="bg-primaryGreen hover:bg-green-600 text-white px-4 py-1 rounded-lg text-sm font-semibold transition-colors" 
+        >
+          Add to Cart
+        </button>
       <div
         className="text-xl cursor-pointer"
         onClick={() => handleFavorite(product._id)}
