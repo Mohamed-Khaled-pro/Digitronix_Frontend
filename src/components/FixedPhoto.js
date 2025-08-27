@@ -1,21 +1,22 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-export default function FixedPhoto({darkMode}) {
+export default function FixedPhoto({ darkMode }) {
   return (
-    <div className="Main-Container w-full overflow-hidden mb-52">
+    <div className="Main-Container relative w-full overflow-hidden mb-52">
       <motion.div
-        className="w-full h-[300px] md:h-[500px]  md:bg-fixed bg-cover bg-center  bg-no-repeat flex items-center justify-center"
-style={{
-  backgroundImage: darkMode
-    ? "url('/assets/bgDark.jpg')" 
-    : "url('/assets/background1.jpg')"
-}}        initial={{ opacity: 0, scale: 1.05 }}
+        className="w-full h-[300px] md:h-[500px]  bg-cover bg-center  bg-no-repeat flex items-center justify-center"
+        style={{
+          backgroundImage: darkMode
+            ? "url('/assets/background1.jpg')"
+            : "url('/assets/bgDark.jpg')",
+        }}
+        initial={{ opacity: 0, scale: 1.05 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       ></motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-6 mt-10 px-6 ">
+      <div className="  grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-6 mt-10 px-6 z-50">
         {[
           { src: "/assets/headphone.avif", alt: "Headphones" },
           { src: "/assets/laptop3.jpg", alt: "Laptop" },
@@ -24,13 +25,21 @@ style={{
           <motion.div
             key={index}
             className="w-full h-60 md:h-[370px]"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.4, duration: 1.5 }}
+            initial={{ opacity: 0, scale: 0.8, rotate: -3 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{
+              delay: index * 0.3,
+              duration: 1.2,
+              ease: "easeOut",
+              type: "spring",
+              stiffness: 120,
+              damping: 12,
+            }}
             whileHover={{
               scale: 1.05,
-              rotate: 1,
-              boxShadow: "0px 8px 25px rgba(0,0,0,0.3)",
+              rotateX: 5,
+              rotateY: 5,
+              boxShadow: "0px 15px 30px rgba(0,0,0,0.3)",
             }}
           >
             <img

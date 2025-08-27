@@ -20,16 +20,11 @@ export default function Nav({ darkMode, setDarkMode }) {
   const { cart } = useCart();
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Products", path: "/api/products" },
-    { name: "Mobiles", path: "/api/products?category=6887d8a1aea846c50447c1d4" },
-    { name: "Laptops", path: "/api/products?category=6887d812aea846c50447c1d0" },
-    { name: "Computer", path: "/api/products?category=6887d7caaea846c50447c1ce" },
-    { name: "Screens", path: "/api/products?category=6887d8dbaea846c50447c1d6" },
-    { name: "Camera", path: "/api/products?category=688a2d6869f1fe9f970b3728" },
-    { name: "Offers", path: "/api/products?category=6887d9a8aea846c50447c1d8" },
+    { name: "Products", path: "/api/products" },  
     { name: "Featured", path: "/featured" },
     { name: "Wishlist", path: "/wishlist" },
     { name: "Orders", path: "/my-orders" },
+    { name: "Contact", path: "/contact" },
       ...(user?.isAdmin ? [{ name: "Admin", path: "/admin-dashboard" }] : [])
   ];
 
