@@ -42,30 +42,30 @@ function ProductsPage() {
     setVisibleCount(INITIAL_VISIBLE);
   }, [selectedCategory]);
 
-  const handleAddToCart = () => {
-      if (!user) {
-        return toast.error("You must be logged in to add products to your cart");
-      }
-      const exist = cart.find((item) => item.id === product._id);
-      if (exist) {
-        toast("Product already in cart");
-         navigate('/api/products')
-      } else {
-        setCart([
-          ...cart,
-          {
-            id: product._id,
-            name: product.name,
-            price: product.price,
-            image: product.image,
-            quantity: 1,
-            countInStock: product.countInStock,
-          },
-        ]);
-        toast.success("Product added to cart");
-      }
-    };
   
+ const handleAddToCart = (product) => {
+  if (!user) {
+    return toast.error("You must be logged in to add products to your cart");
+  }
+  const exist = cart.find((item) => item.id === product._id);
+  if (exist) {
+    toast("Product already in cart");
+    navigate("/cart"); // الأفضل توديه للسلة بدل /api/products
+  } else {
+    setCart([
+      ...cart,
+      {
+        id: product._id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        quantity: 1,
+        countInStock: product.countInStock,
+      },
+    ]);
+    toast.success("Product added to cart");
+  }
+};
 
   const currentProducts = filteredProducts.slice(0, visibleCount);
 
@@ -215,7 +215,7 @@ function ProductsPage() {
     {/* Actions */}
     <div className="mt-4 flex justify-between items-center">
       <button
-          onClick={handleAddToCart}
+          onClick={() => handleAddToCart(product)}
           className="bg-primaryGreen hover:bg-green-600 text-white px-4 py-1 rounded-lg text-sm font-semibold transition-colors" 
         >
           Add to Cart
